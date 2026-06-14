@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 沖繩七天六夜輕鬆郊遊全攻略 v3.5 Pro</title>
+    <title>2026 沖繩七天六夜輕鬆郊遊全攻略 v3.6 Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -19,16 +19,23 @@
             --day5-border: #2ecc71;
             --day6-border: #e67e22;
             --day7-border: #34495e;
+            
             --note-food-bg: #fff9e6;
             --note-food-border: #f1c40f;
             --note-photo-bg: #f4eaff;
             --note-photo-border: #9b59b6;
             --note-strategy-bg: #ffebf0;
             --note-strategy-border: #e74c3c;
+            
             --nav-height: 60px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -38,6 +45,7 @@
             line-height: 1.5;
         }
 
+        /* Header */
         header {
             background-color: var(--primary);
             color: white;
@@ -48,7 +56,15 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        header h1 { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+        header h1 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
 
         .version-badge {
             background-color: #e74c3c;
@@ -57,21 +73,50 @@
             padding: 2px 8px;
             border-radius: 12px;
             font-weight: bold;
+            letter-spacing: 0.5px;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-        .header-meta { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: #ecf0f1; }
+        .header-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #ecf0f1;
+        }
 
-        .countdown-badge { background-color: var(--accent); padding: 4px 10px; border-radius: 20px; display: inline-block; font-weight: bold; align-self: flex-start; }
+        .countdown-badge {
+            background-color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            align-self: flex-start;
+        }
 
-        main { padding: 15px; }
+        /* Main Content */
+        main {
+            padding: 15px;
+        }
 
-        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
 
-        .tab-content.active { display: block; opacity: 1; }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
 
+        /* Schedule Cards */
         .day-card {
             background: white;
             border-radius: 12px;
@@ -90,103 +135,1021 @@
         .day-card[data-day="6"] { border-top-color: var(--day6-border); }
         .day-card[data-day="7"] { border-top-color: var(--day7-border); }
 
-        .day-card.today-highlight { box-shadow: 0 0 15px rgba(74, 144, 226, 0.4); transform: translateY(-2px); background: #fbfdff; }
+        /* 當天行程高亮樣式 */
+        .day-card.today-highlight {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+            transform: translateY(-2px);
+            background: #fbfdff;
+        }
+        .today-banner {
+            display: none;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .day-card.today-highlight .today-banner {
+            display: inline-block;
+        }
+
+        .day-header {
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .day-transport {
+            font-size: 0.8rem;
+            background: #e1e8ed;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .spot {
+            margin-bottom: 16px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .spot:last-child {
+            margin-bottom: 4px;
+        }
+
+        .spot::before {
+            content: "";
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* 當前時間點高亮樣式 */
+        .spot.current-time-highlight::before {
+            background-color: #e74c3c;
+            box-shadow: 0 0 8px #e74c3c;
+            transform: scale(1.3);
+        }
+        .spot.current-time-highlight .spot-time {
+            color: #e74c3c;
+        }
+
+        .spot-time {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .spot-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        /* Action Buttons Group */
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-map {
+            background: #e8f4fd;
+            color: var(--accent);
+            border-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .btn-copy {
+            background: #f0f4f8;
+            color: #5a6b7c;
+            border-color: #d1dbe5;
+        }
+
+        .btn-phone {
+            background: #e6f7ed;
+            color: #2ecc71;
+            border-color: rgba(46, 204, 113, 0.1);
+        }
+
+        /* Notes UI */
+        .note {
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
         
-        .today-banner { display: none; background: var(--accent); color: white; font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 8px; }
+        .food-note {
+            background-color: var(--note-food-bg);
+            border-left: 4px solid var(--note-food-border);
+        }
         
-        .day-card.today-highlight .today-banner { display: inline-block; }
-
-        .day-header { font-size: 1.15rem; font-weight: bold; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
-
-        .day-transport { font-size: 0.8rem; background: #e1e8ed; padding: 2px 8px; border-radius: 4px; color: var(--primary); font-weight: 500; }
-
-        .spot { margin-bottom: 16px; padding-left: 14px; position: relative; }
-
-        .spot::before { content: ""; position: absolute; left: -4px; top: 6px; width: 8px; height: 8px; background-color: var(--accent); border-radius: 50%; }
-
-        .spot.current-time-highlight::before { background-color: #e74c3c; box-shadow: 0 0 8px #e74c3c; transform: scale(1.3); }
-
-        .spot-time { font-size: 0.8rem; color: var(--accent); font-weight: bold; margin-bottom: 2px; display: flex; align-items: center; gap: 4px; }
-
-        .spot-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
-
-        .action-group { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-
-        .btn-action { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; text-decoration: none; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
-
-        .btn-map { background: #e8f4fd; color: var(--accent); border-color: rgba(74, 144, 226, 0.1); }
-        .btn-copy { background: #f0f4f8; color: #5a6b7c; border-color: #d1dbe5; }
-        .btn-phone { background: #e6f7ed; color: #2ecc71; border-color: rgba(46, 204, 113, 0.1); }
-
-        .note { padding: 10px 12px; border-radius: 6px; margin: 8px 0; font-size: 0.85rem; line-height: 1.4; }
-        .food-note { background-color: var(--note-food-bg); border-left: 4px solid var(--note-food-border); }
-        .photo-note { background-color: var(--note-photo-bg); border-left: 4px solid var(--note-photo-border); }
-        .strategy-box { background-color: var(--note-strategy-bg); border-left: 4px solid var(--note-strategy-border); font-weight: 500; }
-
-        .toggle-container { margin: 10px 0; background: #f8f9fa; border-radius: 8px; padding: 10px; border: 1px dashed #ddd; }
-        .toggle-nav { display: flex; gap: 8px; margin-bottom: 8px; }
-        .toggle-btn { flex: 1; padding: 6px; border: 1px solid var(--accent); background: white; color: var(--accent); border-radius: 6px; font-size: 0.85rem; cursor: pointer; font-weight: 500; }
-        .toggle-btn.active { background: var(--accent); color: white; }
-        .toggle-body { display: none; }
-        .toggle-body.active { display: block; }
-
-        .weather-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
-        .weather-icon { font-size: 3rem; color: #f1c40f; margin-bottom: 10px; }
-        .weather-temp { font-size: 2rem; font-weight: bold; color: var(--primary); }
-        .weather-desc { margin-top: 15px; text-align: left; font-size: 0.95rem; background: var(--bg-color); padding: 15px; border-radius: 8px; }
-
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .lang-card { background: white; border-radius: 10px; padding: 15px 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #eaeaea; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .btn-speak { background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-
-        .mission-group { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .checklist-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
-        input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); margin-top: 2px; }
+        .photo-note {
+            background-color: var(--note-photo-bg);
+            border-left: 4px solid var(--note-photo-border);
+        }
         
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: white; display: flex; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #95a5a6; cursor: pointer; font-size: 0.75rem; gap: 4px; }
-        .nav-item.active { color: var(--accent); }
+        .strategy-box {
+            background-color: var(--note-strategy-bg);
+            border-left: 4px solid var(--note-strategy-border);
+            font-weight: 500;
+        }
+
+        .note i {
+            margin-right: 6px;
+        }
+
+        /* Dynamic Toggles */
+        .toggle-container {
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px dashed #ddd;
+        }
+
+        .toggle-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid var(--accent);
+            background: white;
+            color: var(--accent);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .toggle-body {
+            display: none;
+        }
+
+        .toggle-body.active {
+            display: block;
+        }
+
+        /* Weather Tab */
+        .weather-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .weather-icon {
+            font-size: 3rem;
+            color: #f1c40f;
+            margin-bottom: 10px;
+        }
+        .weather-temp {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .weather-desc {
+            margin-top: 15px;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Language Tab */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .lang-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .lang-card:active {
+            background: #f0f0f0;
+        }
+        .lang-tw {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .lang-jp {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        .btn-speak {
+            background: var(--accent);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Missions Tab */
+        .mission-group {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .role-photo { border-left: 5px solid #9b59b6; }
+        .role-shop { border-left: 5px solid #e74c3c; }
+        .role-funpass { border-left: 5px solid #2ecc71; }
+        
+        .mission-group h3 {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .checklist-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            margin-top: 2px;
+        }
+        .checklist-text {
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        input[type="checkbox"]:checked + .checklist-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: white;
+            display: flex;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #95a5a6;
+            text-decoration: none;
+            font-size: 0.75rem;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>2026 沖繩七天六夜輕鬆郊遊全攻略 <span class="version-badge">v3.5 Pro</span></h1>
-    <div class="header-meta">
-        <span><i class="fa-solid fa-users"></i> 兩位大人、9歲姊姊 (共3人)</span>
-        <span class="countdown-badge"><i class="fa-solid fa-clock"></i> <span id="countdown-wrapper">距離出發還有 <span id="countdown">--</span> 天</span></span>
-    </div>
-</header>
-
-<main id="app-container">
-    <!-- Day 1 -->
-    <section class="day-card" data-day="1" data-date="2026-06-21">
-        <div class="day-header"><span>Day 1 (6/21) 抵達與居酒屋</span><span class="day-transport">自駕</span></div>
-        <div class="spot" data-start="12:40" data-end="15:00">
-            <div class="spot-title">入境與取車</div>
-            <div class="action-group"><a href="https://maps.google.com/?q=Naha+Airport" class="btn-action btn-map">導航</a><button class="btn-action btn-copy" onclick="copyText('那霸機場', this)">複製</button></div>
+    <header>
+        <h1>2026 沖繩七天六夜輕鬆郊遊全攻略 <span class="version-badge">v3.6 Pro</span></h1>
+        <div class="header-meta">
+            <span><i class="fa-solid fa-users"></i> 兩位大人、9歲姊姊 (共3人)</span>
+            <span class="countdown-badge"><i class="fa-solid fa-clock"></i> <span id="countdown-wrapper">距離出發還有 <span id="countdown">--</span> 天</span></span>
         </div>
-        <div class="spot">
-            <div class="spot-title">伊藝休息站午茶</div>
-            <div class="action-group"><button class="btn-action btn-copy" onclick="copyText('346 014 345*03', this)">複製 Mapcode</button></div>
+    </header>
+
+    <main>
+        <section id="tab-schedule" class="tab-content active">
+            
+            <div class="day-card" data-day="1" data-date="2026-06-21">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 1 (6/21 週日)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕（取車與北上）</span>
+                </div>
+                <div class="spot" data-start="12:40" data-end="15:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 12:40 - 15:00</div>
+                    <div class="spot-title">入境與取車</div>
+                    <div class="checklist-text">抵達那霸機場，辦理入境並搭乘接駁車至營業所完成取車。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Naha+Airport" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('那霸機場', this)"><i class="fa-regular fa-copy"></i> 複製名稱</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="15:00" data-end="17:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:00 - 17:30</div>
+                    <div class="spot-title">北上移動與雙重彈性備案 [2選1切換]</div>
+                    <div class="toggle-container">
+                        <div class="toggle-nav">
+                            <button class="toggle-btn active" onclick="toggleContent('day1-route', 'A', this)">備案一: 直達派 (伊藝)</button>
+                            <button class="toggle-btn" onclick="toggleContent('day1-route', 'B', this)">備案二: 景觀派 (萬座毛)</button>
+                        </div>
+                        <div id="day1-route-A" class="toggle-body active">
+                            <div class="note food-note"><i class="fa-solid fa-utensils"></i> 中途停靠高速公路「伊藝休息站」，看海並享用沖繩麵或點心，隨後直達名護。</div>
+                            <div class="action-group">
+                                <a href="https://maps.google.com/?q=Igei+Service+Area" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                                <button class="btn-action btn-copy" onclick="copyText('346 014 345*03', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                            </div>
+                        </div>
+                        <div id="day1-route-B" class="toggle-body">
+                            <div class="note photo-note"><i class="fa-solid fa-camera"></i> 提前於「屋嘉交流道」下高速，前往西海岸「萬座毛」，在壯闊象鼻岩前拍全家福，再沿國道58號北上。</div>
+                            <div class="action-group">
+                                <a href="https://maps.google.com/?q=Manzamo" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                                <button class="btn-action btn-copy" onclick="copyText('206 312 039*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spot" data-start="17:30" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 晚上</div>
+                    <div class="spot-title">在地煙火氣晚餐：居酒屋 ゆきの</div>
+                    <div class="note food-note"><i class="fa-solid fa-beer-mug-empty"></i> 名護在地人極度推崇！點滿一桌沖繩小菜、串燒配上生啤酒，接風洗塵。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿下榻：Hotel Yugaf Inn Okinawa (沖繩余家弗酒店)</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Izakaya+Yukino" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('206 687 130*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                        <a href="tel:0980523212" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="2" data-date="2026-06-22">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 2 (6/22 週一)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕</span>
+                </div>
+                <div class="spot" data-start="10:00" data-end="12:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 10:00 - 12:30</div>
+                    <div class="spot-title">美麗海水族館</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：免排隊直接刷憑證快速入場！</div>
+                    <div class="note food-note"><i class="fa-solid fa-mug-saucer"></i> 直奔黑潮之海旁的 Ocean Blue 咖啡廳，點杯飲料坐看鯨鯊悠游。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Okinawa+Churaumi+Aquarium" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('553 075 797*77', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="13:00" data-end="14:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:00 - 14:00</div>
+                    <div class="spot-title">古宇利島：沙灘午餐</div>
+                    <div class="note food-note"><i class="fa-solid fa-shrimp"></i> 必吃美食：Kouri Shrimp (蝦蝦飯)，坐在橋邊沙灘輕鬆享用。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Kouri+Shrimp" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('485 692 138*33', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="14:00" data-end="15:20">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 14:00 - 15:20</div>
+                    <div class="spot-title">古宇利海洋塔</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：【使用任選景點一】兌換門票，搭乘全自動高爾夫球車攻頂觀海。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Kouri+Ocean+Tower" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('485 693 485*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="15:30" data-end="16:10">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:30 - 16:10</div>
+                    <div class="spot-title">心形岩 (ティーヌ浜)</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 環島秘境：驅車5分鐘抵達島嶼北側。走下礁岩步道至秘境沙灘，為九歲的姊姊拍下充滿夏日氣息的夢幻照片。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Heart+Rock+Okinawa" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('485 751 179*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="16:40" data-end="17:40">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 16:40 - 17:40</div>
+                    <div class="spot-title">雙寶伴手禮任務：Birthday 嬰幼兒用品 (名護店)</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-baby"></i> 購物戰術：順路南下返回名護市區，精選挑選衣服送給遠在台灣的五歲雙胞胎弟弟。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Birthday+Nago" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <a href="tel:0980509200" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                    </div>
+                </div>
+                <div class="spot" data-start="17:40" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 晚上</div>
+                    <div class="spot-title">百年建築晚宴：百年古家 大家 (Ufuya)</div>
+                    <div class="note food-note"><i class="fa-solid fa-cloud-meatball"></i> 在極具歷史感的百年老宅與瀑布造景旁，奢華享用頂級 Agu 豬涮涮鍋。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿續住：Hotel Yugaf Inn Okinawa (沖繩余家弗酒店)</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Ufuya" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('206 745 056*66', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                        <a href="tel:0980530055" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="3" data-date="2026-06-23">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 3 (6/23 週二)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕（58號線全程南下）</span>
+                </div>
+                <div class="spot" data-start="10:00" data-end="11:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 10:00 - 11:30</div>
+                    <div class="spot-title">名護鳳梨園</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：【使用任選景點二】入園，乘坐鳳梨遊園車與探索恐龍區，讓九歲姊姊放電。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Nago+Pineapple+Park" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('206 716 467*88', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="11:45" data-end="13:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:45 - 13:00</div>
+                    <div class="spot-title">傳奇牛排午餐：潛水員牛排 (Restaurant Flipper)</div>
+                    <div class="note food-note"><i class="fa-solid fa-stroopwafel"></i> 驅車前往海岸線名店，在14:00打烊前享有充裕時光，大口享用熱騰騰鐵板菲力牛排與手工派。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Restaurant+Flipper" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <a href="tel:0980523198" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                    </div>
+                </div>
+                <div class="spot" data-start="13:30" data-end="15:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:30 - 15:00</div>
+                    <div class="spot-title">部瀨名海中公園 & ⚠️萬座毛彈性選擇</div>
+                    <div class="checklist-text">搭乘鯨魚玻璃底船並走入海中展望塔。隨後若體力充沛可短暫臨停萬座毛看象鼻岩；若想提早拍飛機則直接略過南下。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Busena+Marine+Park" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('206 442 075*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="15:40" data-end="17:10">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:40 - 17:10</div>
+                    <div class="spot-title">道之驛 嘉手納 (戰機朝聖)</div>
+                    <div class="note food-note"><i class="fa-solid fa-burger"></i> 買份「巨大起司漢堡 (Up-Kitty)」當下午茶。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 核心空軍攝影：直奔四樓觀景台，拿出 <strong>Sony A7C2 / A7M5 + 70-200mm GM2</strong> 鏡頭，從容捕捉美軍戰機起降震撼畫面與熱焰氣流！</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Kadena+Air+Base+Observatory" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('33 584 644*00', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="17:40" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 17:40+</div>
+                    <div class="spot-title">進駐市區飯店與放鬆晚餐</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 精緻旅宿：The Royal Park Hotel Iconic Naha (那霸標誌皇家花園酒店) 辦理入住，卸下攝影重裝。</div>
+                    <div class="checklist-text">晚上毫無移動壓力地漫步至國際通周邊，隨意挑選居酒屋，恢復全家體力。</div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="4" data-date="2026-06-24">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 4 (6/24 週三)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕（那霸近郊）</span>
+                </div>
+                <div class="spot" data-start="11:00" data-end="12:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:00 - 12:30</div>
+                    <div class="spot-title">港川外人住宅區</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 視覺街拍：彩色平房巷弄，利用 70-200mm 長焦捕捉具備強烈壓縮感的文青街景。</div>
+                    <div class="note food-note"><i class="fa-solid fa-cake-candles"></i> 必吃極致甜點：oHacorte 水果塔。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Minatogawa+Stateside+Town" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('33 341 124*33', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="13:00" data-end="17:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:00 - 17:00</div>
+                    <div class="spot-title">永旺夢樂城來客夢 (AEON MALL)</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-bag-shopping"></i> 中部最大旗艦採買：午後最熱時段躲冷氣房，開啟第一波主力瘋狂採買。</div>
+                    <div class="note food-note"><i class="fa-solid fa-ice-cream"></i> Fun Pass 技巧：免費兌換 <strong>Blue Seal 冰淇淋</strong> 享用冰涼下午茶。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Aeon+Mall+Okinawa+Rycom" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('33 530 406*45', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="17:30" data-end="21:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 17:30 - 21:00</div>
+                    <div class="spot-title">PARCO CITY 浦添</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-store"></i> 西海岸海景商場：車程僅15分鐘。精準補齊特定日系品牌，傍晚直接在二樓觀海餐廳用餐，看無敵夕陽落入西海海平線。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿續住：The Royal Park Hotel Iconic Naha</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=San-A+Urasoe+West+Coast+PARCO+CITY" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('33 368 193*00', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="5" data-date="2026-06-25">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 5 (6/25 週四)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-car-side"></i> 自駕 ➔ 傍晚轉單軌</span>
+                </div>
+                <div class="spot" data-start="09:30" data-end="11:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:30 - 11:30</div>
+                    <div class="spot-title">沖繩世界文化王國 (玉泉洞)</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：【使用任選景點三】兌換門票入園。走進30萬年地下鐘乳石奇景探險。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Okinawa+World" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('232 465 240*55', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="12:00" data-end="13:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 12:00 - 13:30</div>
+                    <div class="spot-title">南城海景午餐選擇 [2選1切換]</div>
+                    <div class="toggle-container">
+                        <div class="toggle-nav">
+                            <button class="toggle-btn active" onclick="toggleContent('day5-lunch', 'A', this)">方案A: 浜邊的茶屋</button>
+                            <button class="toggle-btn" onclick="toggleContent('day5-lunch', 'B', this)">方案B: Cafe Yabusachi</button>
+                        </div>
+                        <div id="day5-lunch-A" class="toggle-body active">
+                            <div class="note photo-note"><i class="fa-solid fa-water"></i> 沙灘聽海：近距離面朝太平洋，靜觀潮起潮落享用精緻慢活午餐。</div>
+                            <div class="action-group">
+                                <a href="https://maps.google.com/?q=Hamabe+no+Chaya" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                                <a href="tel:0989482507" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                            </div>
+                        </div>
+                        <div id="day5-lunch-B" class="toggle-body">
+                            <div class="note photo-note"><i class="fa-solid fa-mountain"></i> 懸崖海景：坐落於峭壁高處，享受180度震撼眼球的蔚藍太平洋全景。</div>
+                            <div class="action-group">
+                                <a href="https://maps.google.com/?q=Cafe+Yabusachi" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                                <a href="tel:0989491410" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spot" data-start="14:00" data-end="15:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 14:00 - 15:30</div>
+                    <div class="spot-title">豐崎黃金採買圈 (ASHIBINAA Outlet + iias)</div>
+                    <div class="checklist-text">先在 ASHIBINAA 橫掃精品與運動折扣；再驅車3分鐘轉移至 iias 沖繩豐崎進行免稅品最終大補貨。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Okinawa+Outlet+Mall+Ashibinaa" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 導航 Outlet</a>
+                        <button class="btn-action btn-copy" onclick="copyText('232 543 400*55', this)"><i class="fa-regular fa-copy"></i> 複製 iias Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="15:45" data-end="17:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:45 - 17:30</div>
+                    <div class="spot-title">瀨長島 (無壓甜點與航空民航攝影)</div>
+                    <div class="note food-note"><i class="fa-solid fa-stroopwafel"></i> 先抽「幸福鬆餅」，若排隊過長果斷改買高顏值「義式冰淇淋」或「現打果悉」。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-plane-arrival"></i> 坐在戶外純白階梯吃甜點，拿出長焦近距離捕捉<strong>日本越洋航空 (JTA)</strong>客機掠過頭頂降落的強烈衝擊感畫面。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Umikaji+Terrace" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                    </div>
+                </div>
+                <div class="spot" data-start="18:00" data-end="18:30">
+                    <div class="spot-time"><i class="fa-solid fa-circle-exclamation"></i> 18:00 - 18:30</div>
+                    <div class="spot-title">⚠️ 精準速還車戰略</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-car-burst"></i> 核心戰略：打烊前完成那霸市區還車，徹底卸下自駕精神負擔與昂貴的市區夜間停車費！</div>
+                    <div class="checklist-text">晚上無車一身輕，步行或搭單軌前往「國際通屋台村」放鬆吃烤串。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿續住：The Royal Park Hotel Iconic Naha</div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="6" data-date="2026-06-26">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 6 (6/26 週五)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-taxi"></i> 計程車 + <i class="fa-solid fa-train"></i> 單軌</span>
+                </div>
+                <div class="spot" data-start="09:30" data-end="10:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:30 - 10:30</div>
+                    <div class="spot-title">波上宮 (短途計程車)</div>
+                    <div class="checklist-text">直接搭計程車直達懸崖上的赤瓦神社參拜祈福，欣賞崖壁海景。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-bag-shopping"></i> 必買特製精品：購入精緻可愛的「小學生書包御守」送給九歲姊姊與遠在台灣的五歲雙胞胎弟弟們。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Naminoue+Shrine" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                    </div>
+                </div>
+                <div class="spot" data-start="11:00" data-end="15:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:00 - 15:30</div>
+                    <div class="spot-title">新都心商圈 (Naha Main Place)</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-store"></i> 無車都會日：吹冷氣享用午餐，瘋狂補齊流行服飾、日系美妝與超市人氣名產。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=San-A+Naha+Main+Place" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('33 188 559*44', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                    </div>
+                </div>
+                <div class="spot" data-start="15:30" data-end="16:00">
+                    <div class="spot-time"><i class="fa-solid fa-taxi"></i> 15:30 - 16:00</div>
+                    <div class="spot-title">戰略技能：計程車快遞戰術</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-truck-ramp-box"></i> 拒絕手提苦力！採買完直接在商場門口攔計程車，無痛快遞戰利品回飯店放置，優雅回房短暫休息。</div>
+                </div>
+                <div class="spot" data-start="18:30" data-end="21:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 18:30 - 21:00</div>
+                    <div class="spot-title">國際通頂級晚宴：琉球牛燒肉</div>
+                    <div class="note food-note"><i class="fa-solid fa-fire"></i> 完美奢華慶祝：步行前往名店大啖頂級「琉球牛」燒肉盛宴，為沖繩回憶完美乾杯。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Ryukyu+no+Ushi+Naha" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <a href="tel:0989876150" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 預約專線</a>
+                    </div>
+                </div>
+                <div class="spot" data-start="21:00" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 21:00 後</div>
+                    <div class="spot-title">驚安殿堂唐吉訶德最後巡禮</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-basket-shopping"></i> 吃飽最終清倉大補漏（結帳務必出示 Fun Pass 專屬折價券）。回飯店進行隨身與託運大打包，請櫃檯協助預約明日清晨專車。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿最終夜：The Royal Park Hotel Iconic Naha</div>
+                </div>
+            </div>
+
+            <div class="day-card" data-day="7" data-date="2026-06-27">
+                <div class="day-header">
+                    <div class="day-title-left">
+                        <span>Day 7 (6/27 週六)</span>
+                        <span class="today-banner">TODAY</span>
+                    </div>
+                    <span class="day-transport"><i class="fa-solid fa-taxi"></i> 計程車</span>
+                </div>
+                <div class="spot" data-start="06:00" data-end="06:15">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 06:00</div>
+                    <div class="spot-title">晨間起床梳洗與最終清點</div>
+                </div>
+                <div class="spot" data-start="06:15" data-end="06:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 06:15</div>
+                    <div class="spot-title">辦理退房與專車出發</div>
+                    <div class="checklist-text">於 The Royal Park Hotel Iconic Naha 迅速退房，搭乘預約計程車，清晨都會完全不塞車，10-15分鐘直達那霸機場。</div>
+                </div>
+                <div class="spot" data-start="06:30" data-end="08:30">
+                    <div class="spot-time"><i class="fa-solid fa-plane-up"></i> 06:30 - 08:30</div>
+                    <div class="spot-title">機場從容報到與登機</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-circle-check"></i> 抵達機場櫃檯，從容辦理 <strong>JTA 日本越洋航空 (NU301)</strong> 報到手續，08:30 班機準時起飛返回台北，行程圓滿結束。</div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="tab-weather" class="tab-content">
+            <div class="weather-card">
+                <div class="weather-icon"><i class="fa-solid fa-sun"></i></div>
+                <div class="weather-temp">27°C ~ 32°C</div>
+                <h3>6月底 沖繩盛夏季節</h3>
+                <div class="weather-desc">
+                    <p><i class="fa-solid fa-shirt"></i> <strong>衣著防曬：</strong>紫外線極為強烈，請全家穿著透氣排汗夏裝，隨身攜帶防曬乳、遮陽帽與墨鏡。</p>
+                    <p><i class="fa-solid fa-snowflake"></i> <strong>強冷溫差：</strong>雙旗艦商場（來客夢、PARCO CITY）與都會商圈冷氣強冷，進出室內務必幫九歲姊姊準備薄外套防感冒。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-lang" class="tab-content">
+            <div class="note strategy-box" style="margin-bottom: 15px;">
+                <i class="fa-solid fa-volume-high"></i> 點擊下方日文卡片，系統會自動播放清晰日語語音發音！
+            </div>
+            <div class="lang-grid">
+                <div class="lang-card" onclick="speakJP('免税できますか？')">
+                    <div class="btn-speak"><i class="fa-solid fa-play"></i></div>
+                    <div class="lang-tw">請問有免稅嗎？</div>
+                    <div class="lang-jp">免税できますか？</div>
+                </div>
+                <div class="lang-card" onclick="speakJP('英語のメニューをお願いします')">
+                    <div class="btn-speak"><i class="fa-solid fa-play"></i></div>
+                    <div class="lang-tw">請給我英文菜單</div>
+                    <div class="lang-jp">英語のメニューをお願いします</div>
+                </div>
+                <div class="lang-card" onclick="speakJP('トイレはどこですか')">
+                    <div class="btn-speak"><i class="fa-solid fa-play"></i></div>
+                    <div class="lang-tw">廁所在哪裡</div>
+                    <div class="lang-jp">トイレはどこですか</div>
+                </div>
+                <div class="lang-card" onclick="speakJP('お会計をお願いします')">
+                    <div class="btn-speak"><i class="fa-solid fa-play"></i></div>
+                    <div class="lang-tw">我要結帳</div>
+                    <div class="lang-jp">お会計をお願いします</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-missions" class="tab-content">
+            <div class="mission-group role-funpass">
+                <h3 style="color: #2ecc71;"><i class="fa-solid fa-ticket"></i> Fun Pass 攻略進度</h3>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-1" class="chk-mission" onchange="saveMission('ml-fp-1')">
+                    <span class="checklist-text">美麗海水族館免排隊刷數位憑證直入</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-2" class="chk-mission" onchange="saveMission('ml-fp-2')">
+                    <span class="checklist-text">古宇利海洋塔順利兌換高爾夫球車票 (任選點一)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-3" class="chk-mission" onchange="saveMission('ml-fp-3')">
+                    <span class="checklist-text">名護鳳梨園刷數位憑證免購票入園 (任選點二)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-4" class="chk-mission" onchange="saveMission('ml-fp-4')">
+                    <span class="checklist-text">永旺夢樂城來客夢免費兌換 Blue Seal 冰淇淋</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-5" class="chk-mission" onchange="saveMission('ml-fp-5')">
+                    <span class="checklist-text">沖繩世界文化王國玉泉洞鐘乳石換票 (任選點三)</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-fp-6" class="chk-mission" onchange="saveMission('ml-fp-6')">
+                    <span class="checklist-text">驚安殿堂唐吉訶德出示 Fun Pass 專屬折扣碼</span>
+                </label>
+            </div>
+
+            <div class="mission-group role-photo">
+                <h3 style="color: #9b59b6;"><i class="fa-solid fa-camera"></i> 高級攝影組挑戰</h3>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-ph-1" class="chk-mission" onchange="saveMission('ml-ph-1')">
+                    <span class="checklist-text">心形岩秘境沙灘為姊姊拍下絕美夏日風照片</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-ph-2" class="chk-mission" onchange="saveMission('ml-ph-2')">
+                    <span class="checklist-text">嘉手納 4F 用 A7C2/A7M5 + 70-200mm GM2 捕捉戰機熱焰</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-ph-3" class="chk-mission" onchange="saveMission('ml-ph-3')">
+                    <span class="checklist-text">港川外人住宅利用 70-200mm 拍出文青彩色平房壓縮感</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-ph-4" class="chk-mission" onchange="saveMission('ml-ph-4')">
+                    <span class="checklist-text">美國村日落海灘精準捕捉 19:20 魔幻日落夕陽</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-ph-5" class="chk-mission" onchange="saveMission('ml-ph-5')">
+                    <span class="checklist-text">瀨長島利用長焦捕捉 JTA 民航機掠過頭頂降落瞬間</span>
+                </label>
+            </div>
+
+            <div class="mission-group role-shop">
+                <h3 style="color: #e74c3c;"><i class="fa-solid fa-cart-shopping"></i> 主力戰利品採買</h3>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-1" class="chk-mission" onchange="saveMission('ml-sh-1')">
+                    <span class="checklist-text">名護 Birthday 為台灣的雙胞胎弟弟選購服飾禮物</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-2" class="chk-mission" onchange="saveMission('ml-sh-2')">
+                    <span class="checklist-text">永旺夢樂城來客夢冷氣房展開第一波主力大採購</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-3" class="chk-mission" onchange="saveMission('ml-sh-3')">
+                    <span class="checklist-text">PARCO CITY 浦添西海岸旗艦店補齊日系品牌</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-4" class="chk-mission" onchange="saveMission('ml-sh-4')">
+                    <span class="checklist-text">ASHIBINAA 奧特萊斯精品與運動折扣掃貨</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-5" class="chk-mission" onchange="saveMission('ml-sh-5')">
+                    <span class="checklist-text">iias 豐崎超市免稅雜貨進行假期最終大補漏</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-6" class="chk-mission" onchange="saveMission('ml-sh-6')">
+                    <span class="checklist-text">波上宮成功求到超萌「小學生書包御守」送給姊姊與弟弟們</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="ml-sh-7" class="chk-mission" onchange="saveMission('ml-sh-7')">
+                    <span class="checklist-text">落實「計程車快遞戰術」，免提重物無痛運送回 The Royal Park 飯店</span>
+                </label>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('schedule', this)">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>行程</span>
         </div>
-    </section>
+        <div class="nav-item" onclick="switchTab('weather', this)">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span>氣象</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('lang', this)">
+            <i class="fa-solid fa-language"></i>
+            <span>翻譯</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('missions', this)">
+            <i class="fa-solid fa-list-check"></i>
+            <span>任務</span>
+        </div>
+    </nav>
 
-    <!-- 略：為保持回應長度，請您直接將此結構套用於上述更新行程 -->
-</main>
+    <script>
+        // --- 1. 倒數計時與智慧時間軸高亮定位 ---
+        function initSmartTimeline() {
+            const targetDateStr = '2026-06-21';
+            const targetDate = new Date(targetDateStr + 'T00:00:00').getTime();
+            const now = new Date();
+            const nowTime = now.getTime();
+            const distance = targetDate - nowTime;
+            
+            const days = Math.ceil(distance / (1000 * 60 * 60 * 24));
+            const countEl = document.getElementById('countdown');
+            const wrapperEl = document.getElementById('countdown-wrapper');
+            
+            if (distance < 0) {
+                const tripEnd = new Date('2026-06-27T23:59:59').getTime();
+                if (nowTime <= tripEnd) {
+                    wrapperEl.innerHTML = '<i class="fa-solid fa-plane-departure"></i> 沖繩悠閒度假中！';
+                } else {
+                    wrapperEl.innerHTML = '<i class="fa-solid fa-heart"></i> 沖繩之旅圓滿結束';
+                }
+            } else {
+                countEl.innerText = days;
+            }
 
-<nav class="bottom-nav">
-    <div class="nav-item active" onclick="switchTab('schedule', this)"><i class="fa-calendar-check"></i><span>行程</span></div>
-    <div class="nav-item" onclick="switchTab('weather', this)"><i class="fa-cloud-sun"></i><span>氣象</span></div>
-    <div class="nav-item" onclick="switchTab('lang', this)"><i class="fa-language"></i><span>翻譯</span></div>
-    <div class="nav-item" onclick="switchTab('missions', this)"><i class="fa-list-check"></i><span>任務</span></div>
-</nav>
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const currentDateStr = `${year}-${month}-${date}`;
+            
+            let todayCard = null;
 
-<script>
-    function copyText(t, e) { navigator.clipboard.writeText(t).then(() => { e.innerText = "已複製"; setTimeout(() => e.innerHTML = '<i class="fa-regular fa-copy"></i> 複製', 1500) }) }
-    function speakJP(t) { if('speechSynthesis' in window) { const u = new SpeechSynthesisUtterance(t); u.lang='ja-JP'; u.rate=0.85; speechSynthesis.speak(u); } }
-    function saveMission(id) { localStorage.setItem(id, document.getElementById(id).checked); }
-    // 其他 JS 邏輯同前版本...
-</script>
+            document.querySelectorAll('.day-card').forEach(card => {
+                if (card.getAttribute('data-date') === currentDateStr) {
+                    card.classList.add('today-highlight');
+                    todayCard = card;
+                    
+                    const currentHours = now.getHours();
+                    const currentMinutes = now.getMinutes();
+                    const currentTotalMinutes = (currentHours * 60) + currentMinutes;
+                    
+                    card.querySelectorAll('.spot').forEach(spot => {
+                        const startStr = spot.getAttribute('data-start');
+                        const endStr = spot.getAttribute('data-end');
+                        
+                        if (startStr && endStr) {
+                            const startParts = startStr.split(':');
+                            const endParts = endStr.split(':');
+                            const startMin = (parseInt(startParts[0]) * 60) + parseInt(startParts[1]);
+                            const endMin = (parseInt(endParts[0]) * 60) + parseInt(endParts[1]);
+                            
+                            if (currentTotalMinutes >= startMin && currentTotalMinutes <= endMin) {
+                                spot.classList.add('current-time-highlight');
+                            }
+                        }
+                    });
+                }
+            });
+
+            if (todayCard) {
+                setTimeout(() => {
+                    todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 800);
+            }
+        }
+
+        // --- 2. 一鍵複製功能 (帶有 UI 狀態回饋) ---
+        function copyText(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHtml = btnElement.innerHTML;
+                btnElement.style.backgroundColor = '#2ecc71';
+                btnElement.style.color = 'white';
+                btnElement.innerHTML = '<i class="fa-solid fa-check"></i> 已複製';
+                
+                setTimeout(() => {
+                    btnElement.style.backgroundColor = '';
+                    btnElement.style.color = '';
+                    btnElement.innerHTML = originalHtml;
+                }, 1500);
+            }).catch(err => {
+                alert('複製失敗，瀏覽器拒絕剪貼簿存取');
+            });
+        }
+
+        // --- 3. 底部導航 Tab 切換 ---
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            element.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- 4. 行程方案動態二選一切換 ---
+        function toggleContent(groupId, option, btnElement) {
+            const nav = btnElement.parentElement;
+            nav.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            
+            const container = nav.parentElement;
+            container.querySelectorAll('.toggle-body').forEach(body => body.classList.remove('active'));
+            document.getElementById(`${groupId}-${option}`).classList.add('active');
+        }
+
+        // --- 5. Web Speech API 日語發音調校 ---
+        function speakJP(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ja-JP';
+                utterance.rate = 0.85; // 最佳清晰聆聽倍速
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('您的智慧型手機瀏覽器不支援 Web Speech 語音合成');
+            }
+        }
+
+        // --- 6. 任務清單 LocalStorage 系統 ---
+        function saveMission(id) {
+            const isChecked = document.getElementById(id).checked;
+            localStorage.setItem(id, isChecked);
+        }
+
+        function loadMissions() {
+            const checkboxes = document.querySelectorAll('.chk-mission');
+            checkboxes.forEach(chk => {
+                const savedState = localStorage.getItem(chk.id);
+                if (savedState === 'true') {
+                    chk.checked = true;
+                }
+            });
+        }
+
+        // 初始化驅動
+        document.addEventListener('DOMContentLoaded', () => {
+            initSmartTimeline();
+            loadMissions();
+        });
+    </script>
 </body>
 </html>

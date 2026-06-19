@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>沖繩2026 七天六夜輕鬆郊遊全攻略 v4.4 Cute Edition</title>
+    <title>沖繩2026 七天六夜輕鬆郊遊全攻略 v4.5 Ultimate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -142,7 +142,6 @@
         .day-card[data-day="6"] { border-top-color: var(--day6-border); }
         .day-card[data-day="7"] { border-top-color: var(--day7-border); }
 
-        /* 當天行程高亮樣式 */
         .day-card.today-highlight {
             box-shadow: 0 0 20px rgba(255, 118, 163, 0.3);
             transform: translateY(-3px);
@@ -212,7 +211,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* 當前時間點高亮樣式 */
         @keyframes glowing {
             0% { box-shadow: 0 0 5px #e74c3c; }
             50% { box-shadow: 0 0 15px #e74c3c, 0 0 5px #e74c3c inset; }
@@ -252,7 +250,6 @@
             line-height: 1.5;
         }
 
-        /* Action Buttons Group */
         .action-group {
             display: flex;
             flex-wrap: wrap;
@@ -274,15 +271,12 @@
             transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn-action:active {
-            transform: scale(0.95);
-        }
+        .btn-action:active { transform: scale(0.95); }
 
         .btn-map { background: #E1F0FF; color: #4A90E2; }
         .btn-copy { background: #F1F2F6; color: #747D8C; }
         .btn-phone { background: #E8F8F5; color: #2ECC71; }
 
-        /* Notes UI */
         .note {
             padding: 12px 14px;
             border-radius: 12px;
@@ -297,7 +291,6 @@
 
         .note i { margin-right: 8px; font-size: 1.1rem; }
 
-        /* Dynamic Toggles */
         .toggle-container {
             margin: 12px 0;
             background: #FAFAFA;
@@ -306,74 +299,29 @@
             border: 2px dashed #E0E0E0;
         }
 
-        .toggle-nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .toggle-btn {
-            flex: 1;
-            padding: 8px;
-            border: 2px solid var(--accent);
-            background: white;
-            color: var(--accent);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 700;
-        }
-
-        .toggle-btn.active {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 4px 10px rgba(255, 118, 163, 0.3);
-        }
-
+        .toggle-nav { display: flex; gap: 10px; margin-bottom: 12px; }
+        .toggle-btn { flex: 1; padding: 8px; border: 2px solid var(--accent); background: white; color: var(--accent); border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; font-weight: 700; }
+        .toggle-btn.active { background: var(--accent); color: white; box-shadow: 0 4px 10px rgba(255, 118, 163, 0.3); }
         .toggle-body { display: none; }
         .toggle-body.active { display: block; animation: fadeIn 0.4s; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Weather Tab */
-        .weather-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
+        .weather-card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 6px 15px rgba(0,0,0,0.05); text-align: center; }
         .weather-icon { font-size: 4rem; margin-bottom: 15px; animation: bounce 2s infinite; }
         .weather-temp { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
         .weather-desc { margin-top: 20px; text-align: left; font-size: 0.95rem; line-height: 1.7; background: var(--bg-color); padding: 18px; border-radius: 16px; font-weight: 500; }
 
-        /* Language Tab */
         .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .lang-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px 10px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            cursor: pointer;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            transition: transform 0.2s;
+            background: white; border-radius: 20px; padding: 20px 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            cursor: pointer; border: 2px solid transparent; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; transition: transform 0.2s;
         }
         .lang-card:active { transform: scale(0.95); border-color: var(--accent); }
         .lang-tw { font-weight: 800; font-size: 0.95rem; }
         .lang-jp { font-size: 0.85rem; color: var(--text-light); }
         .btn-speak { background: var(--accent); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(255, 118, 163, 0.4); }
 
-        /* Missions Tab */
         .mission-group { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
         .role-photo { border-left: 6px solid #D980FA; }
         .role-shop { border-left: 6px solid #FF6B81; }
@@ -387,60 +335,22 @@
         .checklist-text { font-size: 0.95rem; flex: 1; font-weight: 600; color: #2F3640; transition: color 0.3s; }
         input[type="checkbox"]:checked + .checklist-text { text-decoration: line-through; color: #BDC3C7; }
 
-        /* Bottom Navigation - 可愛氣泡風格 */
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: white;
-            display: flex;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.06);
-            z-index: 100;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-            padding: 0 10px;
+            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height); background: white;
+            display: flex; box-shadow: 0 -5px 20px rgba(0,0,0,0.06); z-index: 100; border-top-left-radius: 25px; border-top-right-radius: 25px; padding: 0 10px;
         }
-
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #A4B0BE;
-            text-decoration: none;
-            font-size: 0.75rem;
-            gap: 4px;
-            cursor: pointer;
-            font-weight: 800;
-        }
-
-        .nav-item i { 
-            font-size: 1.3rem; 
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        .nav-item { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #A4B0BE; text-decoration: none; font-size: 0.75rem; gap: 4px; cursor: pointer; font-weight: 800; }
+        .nav-item i { font-size: 1.3rem; padding: 8px; border-radius: 50%; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        @keyframes jump {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
+        @keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .nav-item.active { color: var(--accent); }
-        .nav-item.active i { 
-            background-color: var(--accent-light);
-            color: var(--accent);
-            animation: jump 1.5s infinite;
-        }
+        .nav-item.active i { background-color: var(--accent-light); color: var(--accent); animation: jump 1.5s infinite; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>沖繩2026 七天六夜輕鬆郊遊全攻略 🌴 <span class="version-badge">v4.4 Cute Edition</span></h1>
+        <h1>沖繩2026 七天六夜輕鬆郊遊全攻略 🌴 <span class="version-badge">v4.5 Ultimate</span></h1>
         <div class="header-meta">
             <span>👨‍👩‍👧 兩位大人、9歲姊姊 (共3人)</span>
             <span class="countdown-badge"><i class="fa-solid fa-clock"></i> <span id="countdown-wrapper">距離出發還有 <span id="countdown">--</span> 天</span></span>
@@ -466,17 +376,16 @@
                     <div class="spot-title">入境與取車 🚙</div>
                     <div class="spot-desc">抵達那霸機場，辦理入境並搭乘接駁車至營業所完成取車。</div>
                     <div class="action-group">
-                        <a href="https://maps.google.com/?q=Naha+Airport" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('那霸機場', this)"><i class="fa-regular fa-copy"></i> 複製名稱</button>
+                        <a href="https://maps.google.com/?q=Naha+Airport" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 導航機場</a>
                     </div>
                 </div>
 
                 <div class="spot" data-start="15:15" data-end="16:15">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:15 - 16:15</div>
                     <div class="spot-title">沖繩第一餐：通堂小祿本店 🍜</div>
-                    <div class="note food-note"><i class="fa-solid fa-bowl-food"></i> 取車後驅車直奔「琉球新麵 通堂 小祿本店」。在免排隊的下午時段，以招牌豚骨或鹽味拉麵為全家人接風洗塵，瞬間補滿體力。</div>
+                    <div class="note food-note"><i class="fa-solid fa-bowl-food"></i> 取車後直奔「琉球新麵 通堂 小祿本店」。在免排隊時段，以招牌豚骨或鹽味拉麵為全家接風洗塵，瞬間補滿體力。</div>
                     <div class="action-group">
-                        <a href="https://maps.google.com/?q=琉球新麺+通堂+小禄本店" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
+                        <a href="https://maps.google.com/?q=琉球新麺+通堂+小禄本店" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 通堂導航</a>
                         <button class="btn-action btn-copy" onclick="copyText('33 095 245*55', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
@@ -484,38 +393,21 @@
                 <div class="spot" data-start="16:15" data-end="18:00">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 16:15 - 18:00</div>
                     <div class="spot-title">海岸北上與彈性備案 🛣️</div>
-                    <div class="spot-desc">駛上沖繩自動車道北上。中途可視當下日照，選擇提前於「屋嘉交流道」下去：</div>
-                    
-                    <div class="toggle-container">
-                        <div class="toggle-nav">
-                            <button class="toggle-btn active" onclick="toggleContent('day1-route', 'A', this)">備案一 (直達休息派 ☕)</button>
-                            <button class="toggle-btn" onclick="toggleContent('day1-route', 'B', this)">備案二 (萬座毛景觀派 🐘)</button>
-                        </div>
-                        <div id="day1-route-A" class="toggle-body active">
-                            <div class="note food-note"><i class="fa-solid fa-mug-hot"></i> 中途若想直接休息，可停靠高速公路上的「伊藝休息站」，看海稍作休息，隨後直達名護。</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Igei+Service+Area" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                                <button class="btn-action btn-copy" onclick="copyText('346 014 345*03', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                            </div>
-                        </div>
-                        <div id="day1-route-B" class="toggle-body">
-                            <div class="note photo-note"><i class="fa-solid fa-camera"></i> 提早下交流道前往「萬座毛」。拿出 <strong>A75 搭配 FE 24-120mm 鏡頭</strong>，在壯闊的象鼻岩前拍下旅程的第一張全家福，隨後沿著國道 58 號海岸線一路向北駛入名護。</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Manzamo" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                                <button class="btn-action btn-copy" onclick="copyText('206 312 039*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                            </div>
-                        </div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 駛上沖繩自動車道北上。若天氣好可於「屋嘉交流道」下去，前往「萬座毛」拿出 <strong>A75 搭配 FE 24-120mm 鏡頭</strong> 拍下旅程第一張高畫質全家福；若想直接休息則直達名護。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Manzamo" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 萬座毛導航</a>
+                        <button class="btn-action btn-copy" onclick="copyText('206 312 039*11', this)"><i class="fa-regular fa-copy"></i> 萬座毛 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="18:00" data-end="19:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 18:00 - 19:30</div>
                     <div class="spot-title">進駐名護與絕美星巴克休息 ☕</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-suitcase"></i> 抵達 Hotel Yugaf Inn Okinawa 辦理入住並卸下行李。</div>
-                    <div class="note photo-note"><i class="fa-solid fa-mug-hot"></i> 趁著晚餐前空檔，前往距離飯店極近的「Starbucks Coffee 名護 21 世紀之森公園 Akemioterasu 店」。在木造質感的空間內，點杯咖啡看著夕陽海景，享受極致的渡假閒適感。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-suitcase"></i> 抵達 Hotel Yugaf Inn Okinawa 辦理入住卸行李。</div>
+                    <div class="note food-note"><i class="fa-solid fa-mug-hot"></i> 晚餐前空檔前往「Starbucks 名護 21 世紀之森公園店」。在木造空間點杯咖啡看著夕陽海景，享受極致渡假閒適感。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Starbucks+Coffee+Nago+21st+Century+Forest+Park" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 星巴克導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 598 867*33', this)"><i class="fa-regular fa-copy"></i> 複製飯店 Mapcode</button>
+                        <button class="btn-action btn-copy" onclick="copyText('206 598 867*33', this)"><i class="fa-regular fa-copy"></i> 飯店 Mapcode</button>
                     </div>
                 </div>
 
@@ -524,9 +416,8 @@
                     <div class="spot-title">在地煙火氣晚宴：居酒屋 ゆきの 🍻</div>
                     <div class="spot-desc">待肚子稍微消化後，前往名護當地人極度推崇的「居酒屋 ゆきの」，點滿一桌沖繩小菜、串燒配上生啤酒。</div>
                     <div class="action-group">
-                        <a href="https://maps.google.com/?q=Yukino+Nago" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 687 130*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                        <a href="tel:0980523212" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話直撥</a>
+                        <a href="https://maps.google.com/?q=Yukino+Nago" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 居酒屋導航</a>
+                        <a href="tel:0980523212" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話預約</a>
                     </div>
                 </div>
             </div>
@@ -535,7 +426,7 @@
             <div class="day-card" data-day="2" data-date="2026-06-22">
                 <div class="day-header">
                     <div class="day-title-left">
-                        <span>Day 2 (6/22 週一) 靈魂飯糰與環島秘境 🐳</span>
+                        <span>Day 2 (6/22 週一) 靈魂飯糰與海洋之約 🐳</span>
                         <span class="today-banner">TODAY</span>
                     </div>
                     <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕</span>
@@ -544,7 +435,7 @@
                 <div class="spot" data-start="08:15" data-end="08:50">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 08:15 - 08:50</div>
                     <div class="spot-title">人氣靈魂早餐：Hanasaki Marche 🍙</div>
-                    <div class="note food-note"><i class="fa-solid fa-store"></i> 早上從飯店出發，順著國道 449 號線前往水族館途中停靠商場。直接前往「Potama」購買熱騰騰的沖繩飯糰，在海景露台輕鬆享用，為九歲的姊姊補滿元氣！</div>
+                    <div class="note food-note"><i class="fa-solid fa-store"></i> 順路停靠「Hanasaki Marche」。前往「Potama」購買熱騰騰沖繩飯糰，在海景露台輕鬆享用，為孩子們補滿元氣。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Okinawa+Hanasaki+Marche" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                     </div>
@@ -553,8 +444,8 @@
                 <div class="spot" data-start="09:00" data-end="11:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:00 - 11:30</div>
                     <div class="spot-title">美麗海水族館 (避開人潮) 🐋</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：吃飽後極速抵達，免排隊直接刷憑證快速入場，享受清靜的館內空間。</div>
-                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 直奔 Ocean Blue 咖啡廳入座，使用 <strong>A75 搭配 FE 24-120mm 鏡頭</strong> 輕鬆捕捉黑潮之海的廣闊與鯨鯊悠游的震撼畫面。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：提早抵達，免排隊直接刷憑證快速入場。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 直奔 Ocean Blue 咖啡廳入座，使用 <strong>A75 + FE 24-120mm 鏡頭</strong> 輕鬆捕捉黑潮之海廣闊與鯨鯊悠游的震撼畫面。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Okinawa+Churaumi+Aquarium" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                         <button class="btn-action btn-copy" onclick="copyText('553 075 797*77', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
@@ -564,19 +455,18 @@
                 <div class="spot" data-start="12:15" data-end="13:40">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 12:15 - 13:40</div>
                     <div class="spot-title">L LOTA 頂級海景午餐 🍽️</div>
-                    <div class="note food-note"><i class="fa-solid fa-utensils"></i> 離開水族館後驅車跨越古宇利大橋。直奔島上最美景觀餐廳「L LOTA」，在舒適冷氣房內享用精緻海鮮料理與甜點。</div>
-                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 拿出 <strong>A75 搭配 FE 24-120mm 鏡頭</strong>，隔著大片落地窗將古宇利大橋與漸層海景完美收進超高畫質全家福中。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 驅車跨越古宇利大橋，直奔景觀餐廳「L LOTA」。在冷氣房享用精緻料理，隔著大片落地窗將古宇利大橋與漸層海景完美收進全家福中。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=L+LOTA+Okinawa" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                         <button class="btn-action btn-copy" onclick="copyText('485 692 291*85', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                        <a href="tel:0980515031" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話直撥</a>
+                        <a href="tel:0980515031" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 餐廳直撥</a>
                     </div>
                 </div>
 
                 <div class="spot" data-start="13:50" data-end="15:00">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:50 - 15:00</div>
                     <div class="spot-title">古宇利海洋塔 🐚</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：吃飽後驅車 1 分鐘極速抵達。使用 Fun Pass (任選景點一) 兌換門票，搭乘全自動高爾夫球車攻頂，從另一個絕佳角度再次欣賞無邊際海景。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：吃飽後驅車 1 分鐘抵達。使用 Fun Pass (任選景點一) 兌換門票，搭乘全自動高爾夫球車攻頂，欣賞無邊際海景。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Kouri+Ocean+Tower" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                         <button class="btn-action btn-copy" onclick="copyText('485 693 485*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
@@ -586,34 +476,29 @@
                 <div class="spot" data-start="15:10" data-end="15:50">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:10 - 15:50</div>
                     <div class="spot-title">心形岩 (ティーヌ浜) 💕</div>
-                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 秘境沙灘：驅車抵達島嶼北側。走下一小段礁岩步道抵達秘境沙灘，在極度清澈的海水旁，為九歲的姊姊拍下充滿夏日氣息的夢幻照片。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 秘境沙灘：走下一小段礁岩步道抵達秘境沙灘，在極度清澈的海水旁，為姊姊拍下充滿夏日氣息的夢幻照片。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Heart+Rock+Okinawa" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('485 751 179*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="16:30" data-end="17:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 16:30 - 17:30</div>
-                    <div class="spot-title">專屬伴手禮任務：Birthday 嬰幼兒用品 (名護店) 👶</div>
-                    <div class="spot-desc">告別古宇利島，順路南下返回名護市區。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> 採買必辦：專門為遠在台灣的五歲雙胞胎弟弟挑選專屬禮物與日系精緻服飾。</div>
+                    <div class="spot-title">專屬伴手禮任務：Birthday 嬰幼兒用品 👶</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> 採買必辦：告別古宇利島，返回名護市區前往「Birthday 嬰幼兒用品 (名護店)」，為五歲雙胞胎弟弟挑選專屬禮物與服飾。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Birthday+Nago" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 688 640*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                        <a href="tel:0980509200" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話直撥</a>
                     </div>
                 </div>
 
-                <div class="spot" data-start="17:40" data-end="23:59">
+                <div class="spot" data-start="17:30" data-end="23:59">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 晚上</div>
                     <div class="spot-title">百年建築晚宴：百年古家 大家 (Ufuya) 🥩</div>
-                    <div class="note food-note"><i class="fa-solid fa-cloud-meatball"></i> 在悠久古樸的日式百年老屋與流水瀑布造景旁，全家享用頂級 Agu 豬涮涮鍋。</div>
+                    <div class="note food-note"><i class="fa-solid fa-cloud-meatball"></i> 在百年建築與瀑布造景旁享用頂級 Agu 豬涮涮鍋。</div>
                     <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿續住：Hotel Yugaf Inn Okinawa (沖繩余家弗酒店)</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Ufuya" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 745 056*66', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                        <a href="tel:0980530055" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話直撥</a>
+                        <a href="tel:0980530055" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 餐廳直撥</a>
                     </div>
                 </div>
             </div>
@@ -631,60 +516,54 @@
                 <div class="spot" data-start="10:00" data-end="11:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 10:00 - 11:30</div>
                     <div class="spot-title">名護鳳梨園 🍍</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：辦理退房後前往園區。使用 Fun Pass (任選景點二) 直接刷憑證入場，乘坐鳳梨遊園車與探索恐龍區。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：退房後前往。使用 Fun Pass (任選景點二) 入場，乘坐鳳梨遊園車與探索恐龍區。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Nago+Pineapple+Park" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 716 467*88', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="11:45" data-end="13:00">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:45 - 13:00</div>
                     <div class="spot-title">傳奇牛排午餐：潛水員牛排 (Restaurant Flipper) 🍽️</div>
-                    <div class="note food-note"><i class="fa-solid fa-fire"></i> 順向驅車前往西海岸排隊名店。在 14:00 打烊前擁有充裕用餐時光，大口享用熱騰騰的鐵板菲力牛排與招牌手工派。</div>
+                    <div class="note food-note"><i class="fa-solid fa-fire"></i> 驅車前往潛水員牛排。大口享用熱騰騰的鐵板菲力牛排與招牌手工派。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Restaurant+Flipper" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <a href="tel:0980523198" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 電話直撥</a>
                     </div>
                 </div>
 
                 <div class="spot" data-start="13:30" data-end="15:00">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:30 - 15:00</div>
                     <div class="spot-title">部瀨名海中公園 🐠</div>
-                    <div class="spot-desc">沿國道 58 號線順向南下。搭乘鯨魚造型的玻璃底船出海，並走進海中展望塔深度觀察熱帶魚生態。</div>
+                    <div class="spot-desc">沿國道 58 號線南下。搭乘鯨魚造型的玻璃底船，並走進海中展望塔觀察熱帶魚。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Busena+Marine+Park" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('206 442 075*11', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="15:40" data-end="16:40">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:40 - 16:40</div>
-                    <div class="spot-title">道之驛 嘉手納 (空軍戰機朝聖) 🛩️</div>
-                    <div class="note food-note"><i class="fa-solid fa-burger"></i> 點心補給：抵達後直接購買美味的「巨大起司漢堡 (Up-Kitty)」作為精緻下午茶。</div>
-                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 專業航空攝影：直奔四樓觀景台。換上頂規的 <strong>70-200mm GM2 鏡頭</strong>，徹底解放 <strong>A75 (A7M5)</strong> 的強大追焦性能，從容捕捉美軍戰鬥機起降的震撼畫面與熱焰氣流。</div>
+                    <div class="spot-title">道之驛 嘉手納 (戰機朝聖) 🛩️</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 專業追焦：直奔四樓觀景台。換上頂規的 <strong>70-200mm GM2 鏡頭</strong>，徹底解放 <strong>A75</strong> 的追焦性能，捕捉美軍戰鬥機起降的震撼畫面與熱焰氣流。</div>
+                    <div class="note food-note"><i class="fa-solid fa-burger"></i> 享受美式「巨大起司漢堡 (Up-Kitty)」作為下午茶。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Michi-no-Eki+Kadena" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 584 644*00', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="17:00" data-end="20:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 17:00 - 20:30</div>
-                    <div class="spot-title">永旺夢樂城來客夢：寶可夢狂歡與商場晚餐 🎮</div>
-                    <div class="spot-desc">驅車抵達中部最大商場。直奔一樓<strong>「寶可夢中心」</strong>，讓姊姊盡情挑選自己與雙胞胎弟弟的皮卡丘玩偶與紀念品。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-ice-cream"></i> Fun Pass 技巧：在此順便免費核銷兌換 <strong>Blue Seal 冰淇淋</strong> 下午茶，享受冷氣展開大採買。</div>
-                    <div class="note food-note"><i class="fa-solid fa-utensils"></i> 晚餐安排：直接於商場 3F/4F 美食廣場或 5F 餐廳街舒適享用晚餐，便利解決全家人多元口味需求。</div>
+                    <div class="spot-title">永旺夢樂城來客夢：寶可夢狂歡與晚餐 🎮</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-cart-shopping"></i> 直奔一樓「寶可夢中心」，讓姊姊挑選皮卡丘玩偶與紀念品。隨後兌換 Fun Pass 的 <strong>Blue Seal 冰淇淋</strong>，並進行免稅品採買。</div>
+                    <div class="note food-note"><i class="fa-solid fa-utensils"></i> 晚餐安排：直接於商場 3F/4F 美食廣場或 5F 餐廳街享用晚餐，完美解決全家人的多元口味需求。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=AEON+MALL+Okinawa+Rycom" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 530 406*45', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
                 <div class="spot" data-start="21:10" data-end="23:59">
                     <div class="spot-time"><i class="fa-solid fa-hotel"></i> 21:10+</div>
-                    <div class="spot-title">進駐那霸高奢旗艦飯店 🏨</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-suitcase"></i> 妥善安置：吃飽後走高速輕鬆驅車進入那霸市區，於 The Royal Park Hotel Iconic Naha 辦理入住，妥善安放全套珍貴相機設備與大包小包戰利品。</div>
+                    <div class="spot-title">進駐市區高奢飯店 🏨</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-suitcase"></i> 妥善安置：驅車進入那霸市區，於 The Royal Park Hotel Iconic Naha 辦理入住，妥善安放相機設備與戰利品。</div>
                 </div>
             </div>
 
@@ -692,49 +571,63 @@
             <div class="day-card" data-day="4" data-date="2026-06-24">
                 <div class="day-header">
                     <div class="day-title-left">
-                        <span>Day 4 (6/24 週三) 達摩祈福與西海岸旗艦購物 🛍️</span>
+                        <span>Day 4 (6/24 週三) 達摩祈福與西海岸商場 🛍️</span>
                         <span class="today-banner">TODAY</span>
                     </div>
-                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕</span>
+                    <span class="day-transport"><i class="fa-solid fa-car"></i> 自駕（那霸 ➔ 南城 ➔ 浦添）</span>
                 </div>
 
                 <div class="spot" data-start="09:30" data-end="10:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:30 - 10:30</div>
                     <div class="spot-title">首里西來院 達摩寺 🏮</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-peace"></i> 自駕首站：早上由飯店出發前往首里古區。在被無數紅色彩繪達摩翁包圍的壯觀寺院中參拜祈福。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> Fun Pass 技巧：拿出 Fun Pass <strong>免費兌換極具在地特色的專屬「達摩口金包」</strong>作為此行精緻紀念。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-peace"></i> 自駕首站：從飯店出發前往首里區。在壯觀的紅色達摩翁寺院中祈福。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> Fun Pass 技巧：拿出 Fun Pass <strong>免費兌換專屬「達摩口金包」</strong>作為紀念。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Daruma-ji+Okinawa" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 161 798*22', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
                 </div>
 
-                <div class="spot" data-start="11:00" data-end="12:30">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:00 - 12:30</div>
-                    <div class="spot-title">港川外人住宅區 📸</div>
-                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 長焦壓縮人像：順向北上驅車抵達。漫步彩色美軍復古平房巷弄，大膽使用 <strong>70-200mm GM2 鏡頭</strong> 輕鬆拍出具備強烈空間壓縮感的絕美文青街景人像！</div>
-                    <div class="note food-note"><i class="fa-solid fa-cake-candles"></i> 必吃名店：在著名水果塔專賣店 oHacorte 享用極致精緻水果塔。</div>
+                <div class="spot" data-start="11:15" data-end="13:15">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:15 - 13:15</div>
+                    <div class="spot-title">沖繩世界文化王國 (玉泉洞) 🦇</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 驅車抵達南城。出示 Fun Pass (任選景點三) 兌換門票。換上 <strong>FE 24-120mm 鏡頭</strong>，輕鬆捕捉歷經 30 萬年形成的地下鐘乳石洞震撼廣角全景。</div>
                     <div class="action-group">
-                        <a href="https://maps.google.com/?q=Minatogawa+Stateside+Town" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 341 124*33', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                        <a href="https://maps.google.com/?q=Okinawa+World" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                     </div>
                 </div>
 
-                <div class="spot" data-start="13:00" data-end="18:00">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:00 - 18:00</div>
-                    <div class="spot-title">PARCO CITY 浦添 (極致海景購物旗艦) 💎</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-bag-shopping"></i> 瘋狂掃貨：將今日採買火力全數集中於這間西海岸最大型的旗艦頂級商場，輕鬆採購各類熱門日系品牌與大超市日用品雜貨。</div>
+                <div class="spot" data-start="13:30" data-end="14:45">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 13:30 - 14:45</div>
+                    <div class="spot-title">南城海景午餐 🌊</div>
+                    <div class="toggle-container">
+                        <div class="toggle-nav">
+                            <button class="toggle-btn active" onclick="toggleContent('day4-lunch', 'A', this)">浜邊的茶屋 🏖️</button>
+                            <button class="toggle-btn" onclick="toggleContent('day4-lunch', 'B', this)">Cafe Yabusachi ⛰️</button>
+                        </div>
+                        <div id="day4-lunch-A" class="toggle-body active">
+                            <div class="note food-note"><i class="fa-solid fa-water"></i> 驅車前往「浜邊的茶屋」，看著一望無際的太平洋全景享用午餐，徹底放空。</div>
+                        </div>
+                        <div id="day4-lunch-B" class="toggle-body">
+                            <div class="note food-note"><i class="fa-solid fa-mountain"></i> 驅車前往「Cafe Yabusachi」，看著一望無際的太平洋全景享用午餐，徹底放空。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spot" data-start="14:45" data-end="15:30">
+                    <div class="spot-time"><i class="fa-solid fa-bed"></i> 14:45 - 15:30</div>
+                    <div class="spot-title">完美午睡轉場</div>
+                    <div class="spot-desc">從南城驅車前往西海岸的 PARCO CITY，利用這段約 45 分鐘的平穩車程，讓孩子們在冷氣車上好好睡午覺充電。</div>
+                </div>
+
+                <div class="spot" data-start="15:30" data-end="19:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:30 - 19:30</div>
+                    <div class="spot-title">PARCO CITY 浦添 (極致海景購物) 💎</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-bag-shopping"></i> 瘋狂掃貨：將採買火力全數集中於這間西海岸最大的旗艦商場。補齊各類日系品牌與超市雜貨。</div>
+                    <div class="note food-note"><i class="fa-solid fa-cloud-sun"></i> 海景晚餐：傍晚直接在二樓的觀海餐廳區用餐，看著夕陽沉入西海岸後再驅車返回飯店。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿：The Royal Park Hotel Iconic Naha</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=PARCO+CITY+Urasoe" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 368 193*00', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
                     </div>
-                </div>
-
-                <div class="spot" data-start="18:00" data-end="21:00">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 傍晚 - 21:00</div>
-                    <div class="spot-title">海景餐廳西海岸夕陽晚餐 🌅</div>
-                    <div class="note food-note"><i class="fa-solid fa-cloud-sun"></i> 魔幻景致：傍晚直接在 PARCO CITY 二樓的超開闊海景餐廳區用餐，安靜欣賞絕美紅日沉入西海岸。隨後輕鬆驅車返回那霸飯店。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿續住：The Royal Park Hotel Iconic Naha (那霸標誌皇家花園酒店)</div>
                 </div>
             </div>
 
@@ -742,100 +635,69 @@
             <div class="day-card" data-day="5" data-date="2026-06-25">
                 <div class="day-header">
                     <div class="day-title-left">
-                        <span>Day 5 (6/25 週四) 南城奇景與還車雙軌戰略 🌺</span>
+                        <span>Day 5 (6/25 週四) 神級麵包與和牛晚宴 🌺</span>
                         <span class="today-banner">TODAY</span>
                     </div>
                     <span class="day-transport"><i class="fa-solid fa-car-side"></i> 自駕 ➔ 傍晚轉單軌</span>
                 </div>
 
-                <div class="spot" data-start="09:30" data-end="11:30">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:30 - 11:30</div>
-                    <div class="spot-title">沖繩世界文化王國 (玉泉洞) 🦇</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-ticket"></i> Fun Pass 技巧：早上由那霸飯店出發前往南城。抵達後直接出示 Fun Pass (任選景點三) 免購票兌換門票入園。走進歷經 30 萬年形成的巨型地下鐘乳石洞，深度體驗超現實的大自然神秘探險。</div>
+                <div class="spot" data-start="09:40" data-end="10:15">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:40 - 10:15</div>
+                    <div class="spot-title">搶購 hoppepan 神級麵包 🥐</div>
+                    <div class="note food-note"><i class="fa-solid fa-bread-slice"></i> 精準卡在 10:00 剛開門時抵達浦添市的「hoppepan」，搶購剛出爐的各式調理麵包與軟歐包。</div>
+                </div>
+
+                <div class="spot" data-start="10:30" data-end="12:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 10:30 - 12:00</div>
+                    <div class="spot-title">港川外人住宅區 (無縫銜接) 📸</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 極速轉移至港川。漫步於彩色平房巷弄，吃著剛買的神級麵包或 oHacorte 甜點。拿出 <strong>A75 搭配 70-200mm GM2 鏡頭</strong>，為孩子們拍出極具強烈空間壓縮感的絕美文青街景。</div>
                     <div class="action-group">
-                        <a href="https://maps.google.com/?q=Okinawa+World" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('232 465 240*55', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
+                        <a href="https://maps.google.com/?q=Minatogawa+Stateside+Town" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                     </div>
                 </div>
 
-                <div class="spot" data-start="12:00" data-end="13:30">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 12:00 - 13:30</div>
-                    <div class="spot-title">南城太平洋無邊海景午餐 🌊</div>
-                    <div class="toggle-container">
-                        <div class="toggle-nav">
-                            <button class="toggle-btn active" onclick="toggleContent('day5-lunch', 'A', this)">方案A: 浜邊的茶屋 🏖️</button>
-                            <button class="toggle-btn" onclick="toggleContent('day5-lunch', 'B', this)">方案B: Cafe Yabusachi ⛰️</button>
-                        </div>
-                        <div id="day5-lunch-A" class="toggle-body active">
-                            <div class="note photo-note"><i class="fa-solid fa-water"></i> 沙灘聽海：近距離面朝太平洋海景窗台，靜賞潮起潮落享用特色午餐。</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Hamabe+no+Chaya" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                                <a href="tel:0989482507" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
-                            </div>
-                        </div>
-                        <div id="day5-lunch-B" class="toggle-body">
-                            <div class="note photo-note"><i class="fa-solid fa-mountain"></i> 懸崖絕景：坐落於懸崖峭壁頂端的高空大視界，享受 180 度開闊太平洋景致。</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Cafe+Yabusachi" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                                <a href="tel:0989491410" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 一鍵撥打</a>
-                            </div>
-                        </div>
+                <div class="spot" data-start="12:10" data-end="13:40">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 12:10 - 13:40</div>
+                    <div class="spot-title">A&W 牧港店 (頂級親子放電午餐) 🍔</div>
+                    <div class="note photo-note"><i class="fa-solid fa-camera"></i> 點滿招牌漢堡與 Root Beer。讓雙胞胎弟弟們在戶外溜滑梯放電；換上 <strong>FE 24-120mm 鏡頭</strong>，以橘色復古招牌為背景，為姊姊拍出充滿美式 60 年代氛圍的時尚照。</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=A%26W+Makiminato" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                     </div>
                 </div>
 
-                <div class="spot" data-start="14:00" data-end="15:30">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 14:00 - 15:30</div>
+                <div class="spot" data-start="13:40" data-end="14:15">
+                    <div class="spot-time"><i class="fa-solid fa-bed"></i> 13:40 - 14:15</div>
+                    <div class="spot-title">完美午睡轉場</div>
+                    <div class="spot-desc">吃飽喝足且徹底放電後，驅車順向往南前往豐崎。這段車程剛好讓孩子們在冷氣車上熟睡充電。</div>
+                </div>
+
+                <div class="spot" data-start="14:15" data-end="15:30">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 14:15 - 15:30</div>
                     <div class="spot-title">豐崎黃金採買圈 (ASHIBINAA + iias) 🛒</div>
-                    <div class="checklist-text">驅車位移至豐崎。於「ASHIBINAA 奧特萊斯」主攻國際一線品牌與運動折扣；隨後快速轉移至新商場「iias 沖繩豐崎」進行特色超市伴手禮與免稅商品的最終補貨。</div>
-                    <div class="action-group">
-                        <a href="https://maps.google.com/?q=ASHIBINAA+Outlet" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 導航 Outlet</a>
-                        <button class="btn-action btn-copy" onclick="copyText('232 543 400*55', this)"><i class="fa-regular fa-copy"></i> 複製 iias Mapcode</button>
-                    </div>
+                    <div class="checklist-text">抵達豐崎。於 ASHIBINAA 奧特萊斯主攻折扣精品；隨後驅車轉移至 iias 進行最後補貨。</div>
                 </div>
 
                 <div class="spot" data-start="15:45" data-end="17:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 15:45 - 17:30</div>
-                    <div class="spot-title">瀨長島：無壓甜點與民航航空長焦追機 ✈️</div>
-                    <div class="spot-desc">抵達純白露天階梯商場，採用高效率彈性策略：</div>
-                    <div class="toggle-container">
-                        <div class="toggle-nav">
-                            <button class="toggle-btn active" onclick="toggleContent('day5-sweet', 'A', this)">優先派: 幸福鬆餅 🥞</button>
-                            <button class="toggle-btn" onclick="toggleContent('day5-sweet', 'B', this)">備案派: 網美冰淇淋 🍨</button>
-                        </div>
-                        <div id="day5-sweet-A" class="toggle-body active">
-                            <div class="note food-note"><i class="fa-solid fa-check"></i> 第一時間前往抽取排隊號碼牌，若評估等待時間在無壓力區間內，則當場入座享受超人氣網美鬆餅。</div>
-                        </div>
-                        <div id="day5-sweet-B" class="toggle-body">
-                            <div class="note food-note"><i class="fa-solid fa-ice-cream"></i> 果斷轉移：直接購買高顏值的日系「義式冰淇淋」或現打香濃果昔。全家人坐在露天階梯上面朝海風放鬆享用。</div>
-                        </div>
-                    </div>
-                    <div class="note photo-note"><i class="fa-solid fa-plane-arrival"></i> 航拍亮點：在階梯座位區拿出 <strong>70-200mm GM2 鏡頭</strong>，近距離拍攝<strong>日本越洋航空 (JTA)</strong> 等大型客機低空呼嘯掠過頭頂、震撼降落的那霸機場史詩大畫面。</div>
+                    <div class="spot-title">瀨長島：無壓甜點與航空攝影 ✈️</div>
+                    <div class="spot-desc">抵達後前往「幸福鬆餅」抽取號碼牌，若等待過久則啟動備案，購買義式冰淇淋或果昔。</div>
+                    <div class="note photo-note"><i class="fa-solid fa-plane-arrival"></i> 坐在戶外純白階梯上吃甜點，換回 <strong>70-200mm GM2 鏡頭</strong>，近距離拍攝日本越洋航空 (JTA) 等客機掠過頭頂降落的魄力畫面。</div>
                 </div>
 
-                <div class="spot" data-start="18:00" data-end="23:59">
+                <div class="spot" data-start="18:00" data-end="18:30">
                     <div class="spot-time"><i class="fa-solid fa-circle-exclamation"></i> 18:00 - 18:30</div>
-                    <div class="spot-title">⚠️ 提早精準還車與晚餐雙軌制</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-clock"></i> 還車戰略：離開瀨長島，在營業所打烊前確實完成市區還車手續，正式卸下自駕與找高額夜間停車位的精神負擔！</div>
-                    
-                    <!-- 晚餐決策雙軌制切換 UI (Day 5) -->
-                    <div class="toggle-container" style="border: 2px solid var(--accent); background: #FFFDF0;">
-                        <div class="note strategy-box" style="background:#FFEAA7; border-left-color: #FFD32A;"><i class="fa-solid fa-shuffle"></i> <strong>互動功能：請依您最終決策切換今日晚餐顯示</strong></div>
-                        <div class="toggle-nav">
-                            <button class="toggle-btn active" onclick="toggleContent('day5-dinner-decision', 'A', this)">流派一: 保留本部牧場 🥩</button>
-                            <button class="toggle-btn" onclick="toggleContent('day5-dinner-decision', 'B', this)">流派二: 保留琉球的牛 🍜</button>
-                        </div>
-                        <div id="day5-dinner-decision-A" class="toggle-body active">
-                            <div class="note food-note"><i class="fa-solid fa-fire"></i> <strong>19:00 - 20:40 燒肉本部牧場 那霸店</strong><br>全家散步前往，奢侈享用 100 分鐘最頂級的名護黑毛和牛燒肉晚宴！飯後愉悅漫步夜遊國際通。</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Motobu+Ranch+Naha" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 本部牧場導航</a>
-                                <a href="tel:0989433829" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 本部牧場預約</a>
-                            </div>
-                        </div>
-                        <div id="day5-dinner-decision-B" class="toggle-body">
-                            <div class="note food-note"><i class="fa-solid fa-bowl-rice"></i> <strong>國際通在地名店大巡禮</strong><br>無車一身輕！直接前往最熱鬧的國際通核心區，依據當下喜好從饕客清單中挑選：【沖繩料理 Yuunangi】道地家常菜、知名排隊【暖暮拉麵】、或是大口吃肉的【Steak House 88】享用最地道的沖繩晚餐。</div>
-                        </div>
-                    </div>
+                    <div class="spot-title">⚠️ 提早精準還車</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-clock"></i> 還車戰略：離開瀨長島，於那霸市區的營業所打烊前完成還車手續，正式卸下駕駛負擔。</div>
+                </div>
+
+                <div class="spot" data-start="19:00" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 19:00 - 20:40</div>
+                    <div class="spot-title">本部牧場頂級和牛晚宴 🥩</div>
+                    <div class="note food-note"><i class="fa-solid fa-fire"></i> 無車一身輕，從飯店或還車點散步前往「燒肉本部牧場 那霸店」。準時入座享用 100 分鐘的頂級燒肉饗宴，大口品嚐沖繩在地優質和牛。</div>
                     <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿：The Royal Park Hotel Iconic Naha (那霸標誌皇家花園酒店)</div>
+                    <div class="action-group">
+                        <a href="https://maps.google.com/?q=Motobu+Ranch+Naha" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 本部牧場導航</a>
+                    </div>
                 </div>
             </div>
 
@@ -843,7 +705,7 @@
             <div class="day-card" data-day="6" data-date="2026-06-26">
                 <div class="day-header">
                     <div class="day-title-left">
-                        <span>Day 6 (6/26 週五) 神社祈福與都會購物日 ⛩️</span>
+                        <span>Day 6 (6/26 週五) 神社祈福與都會美食 ⛩️</span>
                         <span class="today-banner">TODAY</span>
                     </div>
                     <span class="day-transport"><i class="fa-solid fa-taxi"></i> 計程車 + <i class="fa-solid fa-train"></i> 單軌</span>
@@ -852,8 +714,7 @@
                 <div class="spot" data-start="09:30" data-end="10:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 09:30 - 10:30</div>
                     <div class="spot-title">波上宮 (短途計程車) 🎒</div>
-                    <div class="spot-desc">早上由飯店大門出發，直接搭乘舒適的短途計程車直達懸崖之上的赤瓦波上宮神社參拜祈福，欣賞斷崖海景。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> 限定購入：購買造型極其可愛精緻的「小學生書包御守」送給九歲的姊姊以及遠在台灣的五歲雙胞胎弟弟們，心意滿滿。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-gift"></i> 從飯店搭乘計程車前往波上宮參拜。購買造型可愛的「小學生書包御守」送給孩子們。</div>
                     <div class="action-group">
                         <a href="https://maps.google.com/?q=Naminoue+Shrine" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
                     </div>
@@ -862,50 +723,26 @@
                 <div class="spot" data-start="11:00" data-end="15:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 11:00 - 15:30</div>
                     <div class="spot-title">新都心商圈 (Naha Main Place) 👗</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-store"></i> 都會日購物：搭乘便捷單軌電車前往「歌町站」。直接進駐巨型購物中心內，舒服吹冷氣享用午餐。隨後橫掃全商場，大肆補齊各式流行日系服飾、藥妝專櫃精品與超市人氣名產土特產。</div>
-                    <div class="action-group">
-                        <a href="https://maps.google.com/?q=San-A+Naha+Main+Place" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 地圖導航</a>
-                        <button class="btn-action btn-copy" onclick="copyText('33 188 559*44', this)"><i class="fa-regular fa-copy"></i> 複製 Mapcode</button>
-                    </div>
+                    <div class="note strategy-box"><i class="fa-solid fa-store"></i> 搭乘計程車或單軌前往「歌町站」。於商場內享用午餐，並毫無壓力地補齊服飾、藥妝與超市名產。</div>
                 </div>
 
                 <div class="spot" data-start="15:30" data-end="16:45">
                     <div class="spot-time"><i class="fa-solid fa-taxi"></i> 15:30 - 16:45</div>
-                    <div class="spot-title">戰略神技：計程車快遞戰術 🚕</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-truck-ramp-box"></i> 拒絕當提貨苦力：大買特買後，嚴禁全家辛苦手提！直接在商場一樓正門口專用排班區攔計程車，以最快速度無痛運送所有沈重無比的戰利品與瘋狂採購名產安全回到飯店。</div>
-                    <div class="spot-desc">回房輕鬆放置戰利品，在大床上吹冷氣洗臉、稍作梳洗，徹底滿血恢復體力。</div>
+                    <div class="spot-title">計程車快遞與悠閒梳洗 🚕</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-truck-ramp-box"></i> 採買完畢後，直接在商場門口攔計程車，無痛運送所有沉重的戰利品回到飯店放置，並在舒適的房間內稍作休息梳洗。</div>
                 </div>
 
-                <div class="spot" data-start="17:15" data-end="21:00">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 傍晚 - 21:00</div>
-                    <div class="spot-title">頂級慶功晚宴與雙軌切換 🥂</div>
-                    
-                    <!-- 晚餐決策雙軌制切換 UI (Day 6) -->
-                    <div class="toggle-container" style="border: 2px solid var(--accent); background: #FFFDF0;">
-                        <div class="note strategy-box" style="background:#FFEAA7; border-left-color: #FFD32A;"><i class="fa-solid fa-shuffle"></i> <strong>互動功能：請依您最終決策切換今日晚餐顯示</strong></div>
-                        <div class="toggle-nav">
-                            <button class="toggle-btn active" onclick="toggleContent('day6-dinner-decision', 'A', this)">流派一: 保留本部牧場 🍜</button>
-                            <button class="toggle-btn" onclick="toggleContent('day6-dinner-decision', 'B', this)">流派二: 保留琉球的牛 🥩</button>
-                        </div>
-                        <div id="day6-dinner-decision-A" class="toggle-body active">
-                            <div class="note food-note"><i class="fa-solid fa-utensils"></i> <strong>18:30 前往國際通享用在地風味</strong><br>步行前往熱鬧的大街，從嚴選饕客清單中隨心挑選：傳統【沖繩料理 Yuunangi】、排隊【暖暮拉麵】、或【Steak House 88】，享受放鬆愜意的在地之夜。</div>
-                        </div>
-                        <div id="day6-dinner-decision-B" class="toggle-body">
-                            <div class="note food-note"><i class="fa-solid fa-fire"></i> <strong>17:15 準時入座【燒肉 琉球的牛 那霸久茂地】</strong><br>從飯店優雅散步 5 分鐘抵達。享用最頂級、入口即化的神級黑毛和牛燒肉套餐，展開本趟旅程最高光、最震撼的終極魔幻慶功盛宴！</div>
-                            <div class="action-group">
-                                <a href="https://maps.google.com/?q=Ryukyu+no+Ushi+Naha+Kumoji" target="_blank" class="btn-action btn-map"><i class="fa-solid fa-location-dot"></i> 琉球的牛導航</a>
-                                <a href="tel:0989876150" class="btn-action btn-phone"><i class="fa-solid fa-phone"></i> 琉球的牛預約</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="spot" data-start="18:30" data-end="21:00">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 18:30 - 20:00</div>
+                    <div class="spot-title">國際通在地美食 (專屬清單解鎖) 🍜</div>
+                    <div class="note food-note"><i class="fa-solid fa-utensils"></i> 傍晚愜意散步前往國際通。依據當下心情挑選：想吃道地家常菜去「沖繩料理Yuunangi」；想大口喝熱湯選「暖暮拉麵」或「琉家拉麵」；想體驗美式文化則直奔「Steak House 88」或「傑克牛排館」。</div>
                 </div>
 
-                <div class="spot" data-start="21:00" data-end="23:59">
-                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 21:00 核心後半夜</div>
+                <div class="spot" data-start="20:00" data-end="23:59">
+                    <div class="spot-time"><i class="fa-regular fa-clock"></i> 20:00 後</div>
                     <div class="spot-title">驚安殿堂唐吉訶德最後巡禮 🐧</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-basket-shopping"></i> 最終盲盒大清倉：吃飽喝足後漫步前往唐吉訶德進行深夜大補漏（結帳時務必出示 Fun Pass 專屬電子折價券享額外折扣）。</div>
-                    <div class="spot-desc">回房進行託運大行李箱與手提隨身包最終完美打包，並提早委請前台預約好隔日清晨準時前往機場的特約計程車。</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿最終夜：The Royal Park Hotel Iconic Naha</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-basket-shopping"></i> 吃飽喝足後，順著國際通進行最後的零食與伴手禮掃貨（結帳時務必出示 Fun Pass 專屬折扣券）。</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-hotel"></i> 住宿最終夜：The Royal Park Hotel Iconic Naha (完成最終行李打包，並請櫃檯預約隔日清晨前往機場的計程車)</div>
                 </div>
             </div>
 
@@ -913,7 +750,7 @@
             <div class="day-card" data-day="7" data-date="2026-06-27">
                 <div class="day-header">
                     <div class="day-title-left">
-                        <span>Day 7 (6/27 週六) 晨間啟航與完美歸途 ✈️</span>
+                        <span>Day 7 (6/27 週六) 晨間啟航與從容返家 ✈️</span>
                         <span class="today-banner">TODAY</span>
                     </div>
                     <span class="day-transport"><i class="fa-solid fa-taxi"></i> 計程車</span>
@@ -921,20 +758,19 @@
 
                 <div class="spot" data-start="06:00" data-end="06:15">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 06:00</div>
-                    <div class="spot-title">清晨起床梳洗 ☀️</div>
-                    <div class="checklist-text">全家準時暢快起床，完成重要隨身護照證件、隨身小書包與大件行李的最終出門清點。</div>
+                    <div class="spot-title">起床梳洗 ☀️</div>
                 </div>
 
                 <div class="spot" data-start="06:15" data-end="06:30">
                     <div class="spot-time"><i class="fa-regular fa-clock"></i> 06:15</div>
-                    <div class="spot-title">辦理退房與專車前往機場 🚕</div>
-                    <div class="checklist-text">於 The Royal Park Hotel Iconic Naha 前台快速完成退房手續，搭上昨夜預約好的特約計程車專車前往那霸機場國際航廈。清晨時分都會區完全沒有任何塞車，車程預計 10-15 分鐘直達。</div>
+                    <div class="spot-title">前往機場 🚕</div>
+                    <div class="checklist-text">於 The Royal Park Hotel Iconic Naha 辦理退房，搭乘預約好的計程車前往那霸機場（市區清晨無塞車，車程約 10-15 分鐘）。</div>
                 </div>
 
                 <div class="spot" data-start="06:30" data-end="08:30">
                     <div class="spot-time"><i class="fa-solid fa-plane-departure"></i> 06:30 - 08:30</div>
-                    <div class="spot-title">機場從容報到與返台 🇹🇼</div>
-                    <div class="note strategy-box"><i class="fa-solid fa-circle-check"></i> 安全抵達國際航廈櫃檯，從容不迫地辦理 <strong>JTA 日本越洋航空 (NU301)</strong> 的登機報到與行李箱大託運。08:30 班機準時起飛，帶著無數豐富照片、美好家族回憶與滿載的戰利品平安返回台北。</div>
+                    <div class="spot-title">班機起飛 🇹🇼</div>
+                    <div class="note strategy-box"><i class="fa-solid fa-circle-check"></i> 抵達櫃檯從容辦理 <strong>JTA 日本越洋航空 (NU301)</strong> 報到手續。08:30 班機起飛，帶著豐富回憶與滿載戰利品返回。</div>
                 </div>
             </div>
 
@@ -949,7 +785,7 @@
                 <div class="weather-desc">
                     <p>👕 <strong>衣著建議：</strong>陽光及紫外線極度強烈，強烈建議穿著透氣、排汗的高舒適夏裝。</p>
                     <p>🕶️ <strong>烈日必備：</strong>隨身小包務必塞滿高強度防曬乳、遮陽帽與大防曬墨鏡。</p>
-                    <p>❄️ <strong>強冷溫差：</strong>三大購物旗艦商圈（來客夢、PARCO CITY、Main Place）內部中央冷氣室溫強冷，溫差極大，出入商場務必幫九歲的姊姊隨身預備一件防冷薄外套避免感冒。</p>
+                    <p>❄️ <strong>強冷溫差：</strong>三大購物旗艦商圈內部冷氣極強，溫差很大，進出室內務必幫九歲的姊姊隨身預備薄外套。</p>
                 </div>
             </div>
         </section>
@@ -1001,15 +837,15 @@
                 </label>
                 <label class="checklist-item">
                     <input type="checkbox" id="m-fp-4" class="chk-mission" onchange="saveMission('m-fp-4')">
-                    <span class="checklist-text">永旺夢樂城來客夢臨櫃免費核銷兌換 Blue Seal 冰淇淋</span>
+                    <span class="checklist-text">永旺夢樂城來客夢臨櫃免費兌換 Blue Seal 冰淇淋</span>
                 </label>
                 <label class="checklist-item">
                     <input type="checkbox" id="m-fp-5" class="chk-mission" onchange="saveMission('m-fp-5')">
-                    <span class="checklist-text">首里西來院達摩寺免費核銷兌換專屬「達摩口金包」</span>
+                    <span class="checklist-text">沖繩世界文化王國玉泉洞 30 萬年鐘乳石洞換票 (任選景點三)</span>
                 </label>
                 <label class="checklist-item">
                     <input type="checkbox" id="m-fp-6" class="chk-mission" onchange="saveMission('m-fp-6')">
-                    <span class="checklist-text">沖繩世界文化王國玉泉洞 30 萬年鐘乳石洞換票 (任選景點三)</span>
+                    <span class="checklist-text">首里西來院達摩寺免費核銷兌換專屬「達摩口金包」</span>
                 </label>
                 <label class="checklist-item">
                     <input type="checkbox" id="m-fp-7" class="chk-mission" onchange="saveMission('m-fp-7')">
@@ -1048,6 +884,10 @@
                     <span class="checklist-text">港川外人住宅利用 70-200mm GM2 拍出彩色平房極致壓縮感文青照</span>
                 </label>
                 <label class="checklist-item">
+                    <input type="checkbox" id="m-ph-5b" class="chk-mission" onchange="saveMission('m-ph-5b')">
+                    <span class="checklist-text">A&W 牧港店利用 FE 24-120mm 拍出美式復古風時尚照</span>
+                </label>
+                <label class="checklist-item">
                     <input type="checkbox" id="m-ph-6" class="chk-mission" onchange="saveMission('m-ph-6')">
                     <span class="checklist-text">瀨長島大長焦完美捕捉 JTA 日本越洋航空低空掠過降落瞬間</span>
                 </label>
@@ -1062,6 +902,10 @@
                 <label class="checklist-item">
                     <input type="checkbox" id="m-sh-1" class="chk-mission" onchange="saveMission('m-sh-1')">
                     <span class="checklist-text">名護 Birthday 專賣店精心幫台灣雙胞胎弟弟選購服飾玩具</span>
+                </label>
+                <label class="checklist-item">
+                    <input type="checkbox" id="m-sh-1b" class="chk-mission" onchange="saveMission('m-sh-1b')">
+                    <span class="checklist-text">hoppepan 成功搶購到剛出爐的神級調理麵包與軟歐包</span>
                 </label>
                 <label class="checklist-item">
                     <input type="checkbox" id="m-sh-2" class="chk-mission" onchange="saveMission('m-sh-2')">
